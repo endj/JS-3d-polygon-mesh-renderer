@@ -1,0 +1,10 @@
+{
+  "name": "js-3d",
+  "version": "0.0.1",
+  "description": "3d engine for JS canvas",
+  "main": "src/main.ts",
+  "scripts": {
+    "build": "tsc && cat build/camera.js build/matrix.js build/vertex.js build/polygon.js build/cube.js build/canvas.js build/main.js > out/bundle.js"
+  },
+  "author": "Edin Jakupovic"
+}

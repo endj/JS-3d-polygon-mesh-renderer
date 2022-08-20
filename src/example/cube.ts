@@ -3,9 +3,9 @@ import Vertex from "../graphics/vertex"
 import { WorldObject } from "../graphics/world"
 
 export default class Cube implements WorldObject {
-    cubePolygons: Polygon[]
-    vertices: Vertex[]
-    position: Vertex
+    readonly cubePolygons: Polygon[]
+    readonly vertices: Vertex[]
+    readonly position: Vertex
     constructor(position: Vertex, radius: number) {
         this.position = position
         this.vertices = this.createVertices(position, radius)
@@ -31,7 +31,7 @@ export default class Cube implements WorldObject {
 
         */
 
-    createVertices(pos: Vertex, radius: number): Vertex[] {
+    private createVertices(pos: Vertex, radius: number): Vertex[] {
         const v: Vertex[] = [
             new Vertex(pos.x - radius, pos.y - radius, pos.z - radius), // a
             new Vertex(pos.x - radius, pos.y + radius, pos.z - radius), // c
@@ -46,7 +46,7 @@ export default class Cube implements WorldObject {
         return v;
     }
 
-    generateFaces(): Polygon[] {
+    private generateFaces(): Polygon[] {
         const v = this.vertices;
         const polygons: Polygon[] = [
             new Polygon([v[FRONT_TOP_LEFT], v[FRONT_TOP_RIGHT], v[FRONT_BOT_RIGHT], v[FRONT_BOT_LEFT]]), // Front

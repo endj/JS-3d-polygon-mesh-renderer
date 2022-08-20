@@ -28,7 +28,18 @@ export default class World {
         this.forEachVertice(v => v.z += by);
     }
 
-    forEachVertice(fn: (v: Vertex) => void) {
+    moveObjectX(by: number, object: WorldObject): void {
+        object.polygons().forEach(p => p.vertices.forEach(v => v.x-=by))
+    }
+    moveObjectY(by: number, object: WorldObject): void {
+        object.polygons().forEach(p => p.vertices.forEach(v => v.y-=by))
+    }
+    moveObjectZ(by: number, object: WorldObject): void {
+        object.polygons().forEach(p => p.vertices.forEach(v => v.z-=by))
+    }
+
+
+    private forEachVertice(fn: (v: Vertex) => void) {
         for (let i = 0; i < this.worldObjects.length; i++) {
             const object: WorldObject = this.worldObjects[i];
             const polygons: Polygon[] = object.polygons();

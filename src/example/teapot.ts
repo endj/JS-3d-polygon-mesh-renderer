@@ -1,4 +1,3 @@
-import Matrix3 from "../graphics/matrix"
 import Polygon from "../graphics/polygon"
 import polygon from "../graphics/polygon"
 import Vertex from "../graphics/vertex"
@@ -15,13 +14,23 @@ export default class Teapot implements WorldObject {
         return this.teapotPolygons;
     }
 
-    generatePolygons(): Polygon[] {
-        const scale = 10
-        const vertex: Vertex[] = rawData.split("\n").map(row => {
-            const [x, y, z] = row.split(" ")
-            return new Vertex(scale * Number.parseFloat(x), scale * Number.parseFloat(y), scale * Number.parseFloat(z))
-        })
-        return [new Polygon(vertex)];
+    private generatePolygons(): Polygon[] {
+        const data = rawData.split("\n")
+        const polygons: Polygon[] = []
+        for (let i = 0; i < data.length; i += 3) {
+            if (data[i] && data[i + 1] && data[i + 2])
+                polygons.push(new Polygon([
+                    this.vertx(data[i]),
+                    this.vertx(data[i + 1]),
+                    this.vertx(data[i + 2])
+                ]))
+        }
+        return polygons
+    }
+
+    private vertx(line: string, scale = 15) {
+        const [x, y, z] = line.split(" ").map(n => Number.parseFloat(n))
+        return new Vertex(x * scale, y * scale, z * scale);
     }
 }
 

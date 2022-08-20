@@ -11,46 +11,43 @@ import Matrix3 from "../graphics/matrix";
 const generateRandomCubes = (): Cube[] => {
     const cubes = []
     const diff = 400
+    const randOffset = () => Math.random() * diff;
     for (let x = -10; x < 10; x++) {
         for (let y = -10; y < 10; y++) {
             for (let z = -10; z < 10; z++) {
-                cubes.push(new Cube({ x: 0 + x * diff, y: 0 + y * diff, z: z * diff + 150 }, 25))
+                cubes.push(new Cube({ x: 100 + x * randOffset(), y: 100 + y * randOffset(), z: z * randOffset() }, 25))
             }
         }
     }
     return cubes;
 }
 
-
-
-const cubes: Cube[] = generateRandomCubes();
-
+//const cubes: Cube[] = generateRandomCubes();
 const teapots: Teapot[] = [];
-let i = 10;
-while(i-->0) {
+let i = 31;
+while (i-- > 0) {
     teapots.push(new Teapot())
 }
 
-
 const canvas = new Canvas({ width: window.innerWidth, height: window.innerHeight })
-const camera = new Camera(new Vertex(0, 0, -100))
+const camera = new Camera(new Vertex(0, 0, 0))
 
 const world = new World();
-cubes.forEach(cube => world.add(cube))
 teapots.forEach(t => {
-    world.moveWorldZ(100)
+    world.moveObjectZ(1000, t)
+    world.rotateWorld(Matrix3.rotationX(0.2))
     world.add(t)
 })
+world.rotateWorld(Matrix3.rotationY(1))
+world.moveWorldZ(2000)
 
-const controller = new Controller(camera, world)
+const controller = new Controller(world)
 controller.setup();
-
 const renderer = new Renderer(canvas, world, camera);
 
 const tick = (): void => {
     renderer.drawFrame()
-    world.rotateWorld(Matrix3.rotationX(0.01))
-  //  world.rotateWorld(Matrix3.rotationZ(0.01))
+    world.rotateWorld(Matrix3.rotationZ(0.01))
     window.requestAnimationFrame(tick)
 }
 tick()

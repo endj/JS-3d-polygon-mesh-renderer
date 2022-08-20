@@ -2,11 +2,11 @@ import Matrix3 from "./matrix"
 import Vertex from "./vertex"
 
 export default class Camera {
-    position: Vertex
-    directionVector: Vertex
-    upVector: Vertex
-    screenDistance: number
-    rightVector: Vertex
+    readonly position: Vertex
+    readonly directionVector: Vertex
+    readonly upVector: Vertex
+    readonly screenDistance: number
+    readonly rightVector: Vertex
 
     constructor(position = new Vertex(0, 0, 0)) {
         this.position = position

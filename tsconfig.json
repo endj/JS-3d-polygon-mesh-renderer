@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "outDir": "build",
-    "rootDir": "src",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowUnreachableCode": false,
-    "skipLibCheck": true,
-    "removeComments": true
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true,
+    "moduleResolution": "node"
   }
 }

@@ -1,11 +1,15 @@
-class Cube {
-    faces: Polygon[]
+import Polygon from "../graphics/polygon"
+import Vertex from "../graphics/vertex"
+import { WorldObject } from "../graphics/world"
+
+export default class Cube implements WorldObject {
+    cubePolygons: Polygon[]
     vertices: Vertex[]
     position: Vertex
     constructor(position: Vertex, radius: number) {
         this.position = position
         this.vertices = this.createVertices(position, radius)
-        this.faces = this.generateFaces()
+        this.cubePolygons = this.generateFaces()
     }
 
     /*
@@ -66,6 +70,10 @@ class Cube {
     moveZ(amount: number) {
         this.vertices.forEach(v => v.z += amount)
         this.position.z += amount
+    }
+
+    polygons(): Polygon[] {
+        return this.cubePolygons;
     }
     /*
            e-------f

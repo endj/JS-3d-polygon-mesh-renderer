@@ -1,4 +1,6 @@
-class Polygon {
+import Vertex from "./vertex"
+
+export default class Polygon {
     count: number
     vertices: Vertex[]
 

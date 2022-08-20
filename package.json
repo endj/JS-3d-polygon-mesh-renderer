@@ -4,7 +4,13 @@
   "description": "3d engine for JS canvas",
   "main": "src/main.ts",
   "scripts": {
-    "build": "tsc && cat build/camera.js build/matrix.js build/vertex.js build/polygon.js build/cube.js build/canvas.js build/main.js > out/bundle.js"
+    "build": "npx webpack"
   },
-  "author": "Edin Jakupovic"
+  "author": "Edin Jakupovic",
+  "devDependencies": {
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
 }

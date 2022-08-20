@@ -1,9 +1,11 @@
-interface Config {
+import Polygon from "./polygon"
+
+type Config = {
     width: number,
     height: number
 }
 
-class Canvas {
+export default class Canvas {
     canvas: HTMLCanvasElement
     context: CanvasRenderingContext2D
     width: number
@@ -28,7 +30,7 @@ class Canvas {
     }
 
     clearScreen(): void {
-        this.context.fillRect(- canvas.width / 2, - canvas.height / 2, canvas.width, canvas.height)
+        this.context.fillRect(- this.canvas.width / 2, - this.canvas.height / 2, this.canvas.width, this.canvas.height)
     }
 
     drawPolygon(polygon: Polygon): void {
@@ -40,10 +42,7 @@ class Canvas {
         this.context.stroke()
     }
 
-    drawCube(cube: Cube): void {
-        for (let i = 0; i < cube.faces.length; i++)
-            this.drawPolygon(cube.faces[i])
-    }
+
 
 }
 

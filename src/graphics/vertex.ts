@@ -1,4 +1,4 @@
-class Vertex {
+export default class Vertex {
     x: number
     y: number
     z: number
